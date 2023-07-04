@@ -1,0 +1,25 @@
+{
+  "name": "expresssqlmongo",
+  "version": "1.0.0",
+  "description": "Task RestAPI",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayhans358/task_restapi.git"
+  },
+  "author": "rayhans najib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rayhans358/task_restapi/issues"
+  },
+  "homepage": "https://github.com/rayhans358/task_restapi#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22"
+  }
+}
