@@ -1,6 +1,8 @@
 const connection = require('../../config/mysql');
+const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const upload = multer({dest: '/uploads'});
 
 const index = (req, res) => {
   const {search} = req.query;
@@ -37,7 +39,7 @@ const store = (req, res) => {
   const image = req.file;
   if (image) {
     const target = path.join(__dirname, '../../uploads', image.originalname);
-    fs.renameSync(image.path, target)
+    fs.renameSync(image.path, target);
     connection.query({
       sql:'INSERT INTO products (users_id, name, price, stock, status, image_url) VALUES (?, ?, ?, ?, ?, ?)',
       values: [parseInt(users_id), name, price, stock, status, `http://localhost:3000/public/${image.originalname}`]
