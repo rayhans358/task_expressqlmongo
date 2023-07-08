@@ -1,5 +1,6 @@
 const sequelize = require('../../config/sequelize');
 const { DataTypes } = require('sequelize');
+
 const Product = sequelize.define('Product', {
   users_id: {
     type: DataTypes.INTEGER,
