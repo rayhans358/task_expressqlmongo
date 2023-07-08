@@ -4,6 +4,33 @@ const path = require('path');
 const fs = require('fs');
 const upload = multer({dest: '../../uploads'});
 
+const getIndex = async (req, res) => {
+  const { name } = req.query;
+  try {
+    const products = await Product.findAll();
+    res.send(products);
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+const getView = async (req, res) => {
+  const productsId = req.params.id;
+
+  try {
+    const product = await Product.findByPk(productsId);
+    if (product) {
+      res.send(product);
+    } else {
+      res.status(404).json({
+        message: 'Product not found'
+      });
+    }
+  } catch (err) {
+    res.send(err);
+  }
+}
+
 const storePost = async (req, res) => {
   const {users_id, name, price, stock, status} = req.body;
   console.log(req.body);
@@ -21,11 +48,13 @@ const storePost = async (req, res) => {
     }
   } else {
     res.json({
-      message: 'Failed'
+      msg: 'Failed'
     })
   }
 }
 
 module.exports = {
+  getIndex,
+  getView,
   storePost
 }
