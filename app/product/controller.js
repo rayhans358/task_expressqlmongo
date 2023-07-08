@@ -2,7 +2,7 @@ const connection = require('../../config/mysql');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const upload = multer({dest: '/uploads'});
+const upload = multer({dest: '../../uploads'});
 
 const index = (req, res) => {
   const {search} = req.query;
