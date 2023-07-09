@@ -9,6 +9,7 @@ router.get('/product', productController.getIndex);
 router.get('/product/:id', productController.getView);
 router.post('/product', upload.single ('image'), productController.storePost);
 router.put('/product/:id', upload.single('image'),productController.putUpdate);
-// router.delete('/product/:id', upload.single('image'),productController.delDestroy);
+router.delete('/product/:id', productController.deleteProductByid);
+router.delete('/product/delete/:name', productController.deleteProductByname);
 
 module.exports = router;
