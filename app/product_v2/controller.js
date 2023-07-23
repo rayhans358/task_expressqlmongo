@@ -1,9 +1,7 @@
 const Product = require('./model');
-const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { Op } = require('sequelize');
-const upload = multer({dest: '../../uploads'});
 
 const getIndex = async (req, res) => {
   const { name } = req.query;

@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const upload = multer({dest: '../../uploads'});
+const upload = multer({dest: 'uploads'});
 const productController = require('./controller');
 
 router.get('/product', productController.getIndex);
