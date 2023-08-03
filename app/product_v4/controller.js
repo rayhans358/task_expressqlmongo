@@ -1,5 +1,4 @@
 const Product = require('./model');
-const db = require('../../config/mongoose');
 const path = require('path');
 const fs = require('fs');
 
@@ -34,26 +33,26 @@ const getView = (req, res) => {
         res.status(200).send(result);
       }
     })
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.send(error));
 };
 
 const storePost = (req, res) => {
   const { name, price, stock, status } = req.body;
   const image = req.file;
-  console.log(typeof status);
 
   if (!name) {
-    res.status(400).send({ status: 'failed', message: 'This field name is not complete' });
+    return res.status(400).send({ status: 'failed', message: 'This field name is not complete' });
   }
   if (!price || isNaN(price)) {
-    res.status(400).send({ status: 'failed', message: 'This field price is not complete or invalid' });
+    return res.status(400).send({ status: 'failed', message: 'This field price is not complete or invalid' });
   }
   if (!stock || isNaN(stock)) {
-    res.status(400).send({ status: 'failed', message: 'This field stock is not complete or invalid' });
+    return res.status(400).send({ status: 'failed', message: 'This field stock is not complete or invalid' });
   }
-  if (typeof status !== 'boolean' || status === null || status === undefined) {
-    res.status(400).send({ status: 'failed', message: 'This field status must be a boolean and cannot be empty' });
+  if (!status || status === null || status === undefined) {
+    return res.status(400).send({ status: 'failed', message: 'This field status must cannot be empty or null and undefined' });
   }
+  
   let imageUrl = '';
   if (image) {
     const target = path.join(__dirname, '../../uploads', image.originalname);
@@ -121,7 +120,7 @@ const deleteProductByid = (req, res) => {
           res.status(404).send({ status: 'failed', message: 'Product by _id failed to delete' });
       }
     })
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.send(error));
 };
 
 const deleteProductByname = (req, res) => {
@@ -136,7 +135,7 @@ const deleteProductByname = (req, res) => {
         res.status(404).send({ status: 'failed', message: 'Product by name failed to delete' });
       }
     })
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.send(error));
 };
 
 module.exports = {
