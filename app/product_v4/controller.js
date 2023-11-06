@@ -57,7 +57,7 @@ const storePost = (req, res) => {
   if (image) {
     const target = path.join(__dirname, '../../uploads', image.originalname);
     fs.renameSync(image.path, target);
-    imageUrl = `https://ill-puce-turkey-toga.cyclic.app/public/${image.originalname}`;
+    imageUrl = `http://localhost:3000/public/${image.originalname}`;
   }
   
   const productData = {
@@ -85,7 +85,7 @@ const putUpdate = (req, res) => {
   if (image) {
     const target = path.join(__dirname, '../../uploads', image.originalname);
     fs.renameSync(image.path, target);
-    imageUrl = `https://ill-puce-turkey-toga.cyclic.app/public/${image.originalname}`;
+    imageUrl = `http://localhost:3000/public/${image.originalname}`;
   }
 
   const productData = {
