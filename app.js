@@ -26,4 +26,4 @@ app.use((req, res, next) => {
   });
 });
 
-app.listen(3000, () => console.log('Server: http://localhost:3000'))
+app.listen(3007, () => console.log('Server: http://localhost:3007'))
